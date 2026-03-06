@@ -13,6 +13,9 @@ service = AnalysisService()
 @router.post("/url", response_model=AnalyzeResponse)
 async def analyze_url(request: AnalyzeRequest):
     """分析指定URL"""
+    if not request.url or not request.url.startswith(("http://", "https://")):
+        raise HTTPException(status_code=400, detail="请输入有效的URL")
+    
     try:
         result = await service.analyze_url(
             url=request.url,
@@ -28,7 +31,7 @@ async def get_task(task_id: str):
     """获取分析任务结果"""
     result = service.get_task(task_id)
     if not result:
-        raise HTTPException(status_code=404, detail="任务不存在")
+        raise HTTPException(status_code=404, detail="任务不存在或已过期")
     return result
 
 @router.get("/types")

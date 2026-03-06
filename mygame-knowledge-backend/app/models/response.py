@@ -42,14 +42,14 @@ class RelationInfo(BaseModel):
 class AnalyzeResponse(BaseModel):
     """分析响应模型"""
     task_id: str
-    title: str
-    url: str
-    data_type: str  # 页面类型: pet, equipment, dungeon, etc.
-    entities: List[EntityInfo] = []
-    relations: List[RelationInfo] = []
+    title: str = ""
+    url: str = ""
+    data_type: str = "general"
+    entities: List[EntityInfo] = Field(default_factory=list)
+    relations: List[RelationInfo] = Field(default_factory=list)
     raw_html: Optional[str] = None
     raw_text: Optional[str] = None
-    suggestions: List[str] = []
+    suggestions: List[str] = Field(default_factory=list)
     analyze_time: datetime = Field(default_factory=datetime.now)
     source: str = "魔域官方资料库"
     
