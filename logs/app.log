@@ -1,0 +1,776 @@
+2026-02-27 11:34:21 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 8ea1c66d-514e-4aac-beb6-d1b2b3abcfd5: https://my.99.com/data/pet/123.html
+2026-02-27 11:34:21 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/data/pet/123.html
+2026-02-27 11:34:22 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/data/pet/123.html - 大小: 4149 字节
+2026-02-27 11:34:22 | ERROR    | app.services.analysis_service:analyze_url:72 - 分析失败 https://my.99.com/data/pet/123.html: Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+2026-02-27 11:34:26 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 8c3e3632-85c1-4831-a7e5-ed25dd4d1e62: https://my.99.com/data/equip/456.html
+2026-02-27 11:34:26 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/data/equip/456.html
+2026-02-27 11:34:26 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/data/equip/456.html - 大小: 4149 字节
+2026-02-27 11:34:26 | ERROR    | app.services.analysis_service:analyze_url:72 - 分析失败 https://my.99.com/data/equip/456.html: Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+2026-02-27 11:34:27 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 e8fe908c-0d86-4276-86ff-e22c2255784d: https://my.99.com/data/skill/789.html
+2026-02-27 11:34:27 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/data/skill/789.html
+2026-02-27 11:34:27 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/data/skill/789.html - 大小: 4149 字节
+2026-02-27 11:34:27 | ERROR    | app.services.analysis_service:analyze_url:72 - 分析失败 https://my.99.com/data/skill/789.html: Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+2026-02-27 11:34:29 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 36236b80-4b3a-400b-9017-cda73b95e901: https://my.99.com/data/skill/789.html
+2026-02-27 11:34:29 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/data/skill/789.html
+2026-02-27 11:34:29 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/data/skill/789.html - 大小: 4149 字节
+2026-02-27 11:34:29 | ERROR    | app.services.analysis_service:analyze_url:72 - 分析失败 https://my.99.com/data/skill/789.html: Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+2026-02-27 14:02:17 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 52b5892b-ad19-4530-ab24-9ce82324b104: https://my.99.com/data/pet/123.html
+2026-02-27 14:02:17 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/data/pet/123.html
+2026-02-27 14:02:18 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/data/pet/123.html - 大小: 4149 字节
+2026-02-27 14:02:18 | ERROR    | app.services.analysis_service:analyze_url:72 - 分析失败 https://my.99.com/data/pet/123.html: Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?
+2026-02-27 14:36:53 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 74878658-38a0-4776-bad8-285ca928efab: https://my.99.com/data/dungeon/321.html
+2026-02-27 14:36:53 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/data/dungeon/321.html
+2026-02-27 14:36:54 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/data/dungeon/321.html - 大小: 4149 字节
+2026-02-27 14:36:54 | INFO     | app.crawlers.m99_crawler:_detect_page_type:109 - 从URL判断页面类型: dungeon
+2026-02-27 14:36:54 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 0 个实体
+2026-02-27 14:36:54 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 74878658-38a0-4776-bad8-285ca928efab
+2026-02-27 14:37:34 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 34eeb69f-f853-4c6c-9ecf-292244f48c2b: https://my.99.com/content/2024-11-14/20241114103935970.shtml
+2026-02-27 14:37:34 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2024-11-14/20241114103935970.shtml
+2026-02-27 14:37:34 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2024-11-14/20241114103935970.shtml - 大小: 9089 字节
+2026-02-27 14:37:34 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 19 个实体
+2026-02-27 14:37:34 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 34eeb69f-f853-4c6c-9ecf-292244f48c2b
+2026-02-27 14:38:01 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 8486027b-9fdf-4812-ab9f-cb2f33f0fcb7: https://my.99.com/content/2024-11-14/20241114103935970.shtml
+2026-02-27 14:38:01 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2024-11-14/20241114103935970.shtml
+2026-02-27 14:38:01 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2024-11-14/20241114103935970.shtml - 大小: 9089 字节
+2026-02-27 14:38:01 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 19 个实体
+2026-02-27 14:38:01 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 8486027b-9fdf-4812-ab9f-cb2f33f0fcb7
+2026-02-27 15:19:58 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 9d71186f-1634-4684-b4fc-debe487eb0d6: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 15:19:58 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 15:19:59 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-27 15:19:59 | INFO     | app.crawlers.m99_crawler:_detect_page_type:118 - 从标题判断页面类型: skill
+2026-02-27 15:19:59 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-27 15:19:59 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 9d71186f-1634-4684-b4fc-debe487eb0d6
+2026-02-27 15:20:13 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 256b93c0-679c-4fd8-a2b3-3d65a4159838: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 15:20:13 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 15:20:13 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-27 15:20:13 | INFO     | app.crawlers.m99_crawler:_detect_page_type:118 - 从标题判断页面类型: skill
+2026-02-27 15:20:13 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-27 15:20:13 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 256b93c0-679c-4fd8-a2b3-3d65a4159838
+2026-02-27 15:26:27 | INFO     | app.main:<module>:47 - ==================================================
+2026-02-27 15:26:27 | INFO     | app.main:<module>:48 - 已注册的路由:
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /openapi.json
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /docs
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /redoc
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'POST'} /api/analyze/url
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/task/{task_id}
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/types
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'POST'} /api/chat/supplement
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/history/{task_id}
+2026-02-27 15:26:27 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/test
+2026-02-27 15:26:27 | INFO     | app.main:<module>:52 - ==================================================
+2026-02-27 15:32:15 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 3bae61e3-b677-471c-8bbf-b639dce61436: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 15:32:15 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 15:32:16 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-27 15:32:16 | INFO     | app.crawlers.m99_crawler:_detect_page_type:118 - 从标题判断页面类型: skill
+2026-02-27 15:32:16 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-27 15:32:16 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 3bae61e3-b677-471c-8bbf-b639dce61436
+2026-02-27 15:34:34 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 4bd09390-84de-4525-96bd-e780ddafd19e: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 15:34:34 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 15:34:34 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-27 15:34:34 | INFO     | app.crawlers.m99_crawler:_detect_page_type:118 - 从标题判断页面类型: skill
+2026-02-27 15:34:34 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-27 15:34:34 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 4bd09390-84de-4525-96bd-e780ddafd19e
+2026-02-27 16:21:09 | INFO     | app.main:<module>:47 - ==================================================
+2026-02-27 16:21:09 | INFO     | app.main:<module>:48 - 已注册的路由:
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /openapi.json
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /docs
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /redoc
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'POST'} /api/analyze/url
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/task/{task_id}
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/types
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'POST'} /api/chat/supplement
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/history/{task_id}
+2026-02-27 16:21:09 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/test
+2026-02-27 16:21:09 | INFO     | app.main:<module>:52 - ==================================================
+2026-02-27 16:36:47 | INFO     | app.main:<module>:47 - ==================================================
+2026-02-27 16:36:47 | INFO     | app.main:<module>:48 - 已注册的路由:
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /openapi.json
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /docs
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /redoc
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'POST'} /api/analyze/url
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/task/{task_id}
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/types
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'POST'} /api/chat/supplement
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/history/{task_id}
+2026-02-27 16:36:47 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/test
+2026-02-27 16:36:47 | INFO     | app.main:<module>:52 - ==================================================
+2026-02-27 16:46:10 | INFO     | app.main:<module>:47 - ==================================================
+2026-02-27 16:46:10 | INFO     | app.main:<module>:48 - 已注册的路由:
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /openapi.json
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /docs
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /redoc
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'POST'} /api/analyze/url
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/task/{task_id}
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/types
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'POST'} /api/chat/supplement
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/history/{task_id}
+2026-02-27 16:46:10 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/test
+2026-02-27 16:46:10 | INFO     | app.main:<module>:52 - ==================================================
+2026-02-27 16:51:41 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 2d1a7b0e-7d1f-4cf8-9e0a-de0abc7bdd6e: https://my.99.com/data/equip/456.html
+2026-02-27 16:51:41 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/data/equip/456.html
+2026-02-27 16:51:42 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/data/equip/456.html - 大小: 4149 字节
+2026-02-27 16:51:42 | INFO     | app.crawlers.m99_crawler:_detect_page_type:286 - 从URL判断页面类型: equipment
+2026-02-27 16:51:42 | ERROR    | app.services.analysis_service:analyze_url:72 - 分析失败 https://my.99.com/data/equip/456.html: 'M99Crawler' object has no attribute '_extract_equipment_info_improved'
+2026-02-27 16:52:06 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 ef5629de-21ef-4f5c-bda3-e953669e9993: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 16:52:06 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 16:52:06 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-27 16:52:06 | INFO     | app.crawlers.m99_crawler:_detect_page_type:295 - 从标题判断页面类型: skill
+2026-02-27 16:52:06 | ERROR    | app.services.analysis_service:analyze_url:72 - 分析失败 https://my.99.com/content/2023-11-27/20231127075943813.shtml: 'M99Crawler' object has no attribute '_extract_skill_info_improved'
+2026-02-27 17:04:56 | INFO     | app.main:<module>:47 - ==================================================
+2026-02-27 17:04:56 | INFO     | app.main:<module>:48 - 已注册的路由:
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /openapi.json
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /docs
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'GET', 'HEAD'} /redoc
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'POST'} /api/analyze/url
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/task/{task_id}
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/types
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'POST'} /api/chat/supplement
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/history/{task_id}
+2026-02-27 17:04:56 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/test
+2026-02-27 17:04:56 | INFO     | app.main:<module>:52 - ==================================================
+2026-02-27 17:08:14 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 8423b392-0459-4243-ab84-3fa0dbd9beb8: https://my.99.com/content/2025-07-25/20250725163528646.shtml
+2026-02-27 17:08:14 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2025-07-25/20250725163528646.shtml
+2026-02-27 17:08:14 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2025-07-25/20250725163528646.shtml - 大小: 9770 字节
+2026-02-27 17:08:14 | INFO     | app.crawlers.m99_crawler:_detect_page_type:343 - 从标题判断页面类型: pet
+2026-02-27 17:08:14 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 12 个实体
+2026-02-27 17:08:14 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 8423b392-0459-4243-ab84-3fa0dbd9beb8
+2026-02-27 17:08:25 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 251803e7-45fe-4bbf-bba2-87c257a1fa24: https://my.99.com/content/2025-07-25/20250725163528646.shtml
+2026-02-27 17:08:25 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2025-07-25/20250725163528646.shtml
+2026-02-27 17:08:25 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2025-07-25/20250725163528646.shtml - 大小: 9770 字节
+2026-02-27 17:08:25 | INFO     | app.crawlers.m99_crawler:_detect_page_type:343 - 从标题判断页面类型: pet
+2026-02-27 17:08:25 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 12 个实体
+2026-02-27 17:08:25 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: 251803e7-45fe-4bbf-bba2-87c257a1fa24
+2026-02-27 17:10:46 | INFO     | app.main:<module>:47 - ==================================================
+2026-02-27 17:10:46 | INFO     | app.main:<module>:48 - 已注册的路由:
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /openapi.json
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /docs
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /redoc
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'POST'} /api/analyze/url
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/task/{task_id}
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/types
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'POST'} /api/chat/supplement
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/history/{task_id}
+2026-02-27 17:10:46 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/test
+2026-02-27 17:10:46 | INFO     | app.main:<module>:52 - ==================================================
+2026-02-27 17:11:21 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 a6dd77a4-3c8d-47b1-a7f7-f85071574d3f: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 17:11:21 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-27 17:11:22 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-27 17:11:22 | INFO     | app.crawlers.m99_crawler:_detect_page_type:343 - 从标题判断页面类型: skill
+2026-02-27 17:11:22 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-27 17:11:22 | SUCCESS  | app.services.analysis_service:analyze_url:68 - 分析完成: a6dd77a4-3c8d-47b1-a7f7-f85071574d3f
+2026-02-28 13:25:59 | INFO     | app.main:<module>:47 - ==================================================
+2026-02-28 13:25:59 | INFO     | app.main:<module>:48 - 已注册的路由:
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /openapi.json
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /docs
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'HEAD', 'GET'} /redoc
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'POST'} /api/analyze/url
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/task/{task_id}
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'GET'} /api/analyze/types
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'POST'} /api/chat/supplement
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/history/{task_id}
+2026-02-28 13:25:59 | INFO     | app.main:<module>:51 - {'GET'} /api/chat/test
+2026-02-28 13:25:59 | INFO     | app.main:<module>:52 - ==================================================
+2026-02-28 13:26:12 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 b0d14276-62ba-44b9-89e1-9c4b708996ee: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 13:26:12 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 13:26:13 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-28 13:26:13 | INFO     | app.crawlers.m99_crawler:_detect_page_type:376 - 从标题判断页面类型: skill
+2026-02-28 13:26:13 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-28 13:26:13 | SUCCESS  | app.services.analysis_service:analyze_url:59 - 分析完成: b0d14276-62ba-44b9-89e1-9c4b708996ee
+2026-02-28 13:26:33 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 022255d1-4b68-4218-a1d0-f6671a9d7415: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 13:26:33 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 13:26:33 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-28 13:26:33 | INFO     | app.crawlers.m99_crawler:_detect_page_type:376 - 从标题判断页面类型: skill
+2026-02-28 13:26:33 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-28 13:26:33 | SUCCESS  | app.services.analysis_service:analyze_url:59 - 分析完成: 022255d1-4b68-4218-a1d0-f6671a9d7415
+2026-02-28 13:26:36 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 f4b34602-826c-44c3-9280-1007fcc5b13e: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 13:26:36 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 13:26:36 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-28 13:26:36 | INFO     | app.crawlers.m99_crawler:_detect_page_type:376 - 从标题判断页面类型: skill
+2026-02-28 13:26:36 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-28 13:26:36 | SUCCESS  | app.services.analysis_service:analyze_url:59 - 分析完成: f4b34602-826c-44c3-9280-1007fcc5b13e
+2026-02-28 13:26:53 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 1e083911-40ba-494e-990d-0e403646cc59: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 13:26:53 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 13:26:53 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-28 13:26:53 | INFO     | app.crawlers.m99_crawler:_detect_page_type:376 - 从标题判断页面类型: skill
+2026-02-28 13:26:53 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-28 13:26:53 | SUCCESS  | app.services.analysis_service:analyze_url:59 - 分析完成: 1e083911-40ba-494e-990d-0e403646cc59
+2026-02-28 16:27:50 | INFO     | app.services.analysis_service:analyze_url:22 - 开始分析任务 b0839c76-4abc-4676-88e3-72cde33b70a0: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 16:27:50 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-02-28 16:27:51 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-02-28 16:27:51 | INFO     | app.crawlers.m99_crawler:_detect_page_type:376 - 从标题判断页面类型: skill
+2026-02-28 16:27:51 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-02-28 16:27:51 | SUCCESS  | app.services.analysis_service:analyze_url:59 - 分析完成: b0839c76-4abc-4676-88e3-72cde33b70a0
+2026-03-03 17:32:09 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-03 17:32:09 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /openapi.json
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /redoc
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-03 17:32:09 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-03 17:32:09 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-03 17:32:09 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-03 17:32:09 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-03 17:32:09 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-03 17:32:19 | INFO     | app.api.knowledge:get_entities:93 - 获取实体列表: 4 条
+2026-03-03 17:33:18 | INFO     | app.api.knowledge:get_entities:93 - 获取实体列表: 4 条
+2026-03-03 17:36:26 | INFO     | app.services.analysis_service:analyze_url:25 - 开始分析任务 8bb2b243-6b15-4db4-b051-22033d82aa37: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-03-03 17:36:26 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-03-03 17:36:27 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-03-03 17:36:27 | INFO     | app.crawlers.m99_crawler:_detect_page_type:376 - 从标题判断页面类型: skill
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:41 - 页面快照已保存: 09272185-f658-4607-bd22-1089ae9fe36c
+2026-03-03 17:36:27 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 魔法师 (ca9fa401-4afa-4483-9d2e-816fa1556c65)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 魔法师 -> ca9fa401-4afa-4483-9d2e-816fa1556c65
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 阳圣炎 (8677086a-35ad-4262-ac56-9ee12e70f71a)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 阳圣炎 -> 8677086a-35ad-4262-ac56-9ee12e70f71a
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 专精 (a0c9b3ba-6b78-4deb-a958-b12776ccc262)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 专精 -> a0c9b3ba-6b78-4deb-a958-b12776ccc262
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 技能 (a7a3770e-f769-4420-a593-9703a11185c0)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 技能 -> a7a3770e-f769-4420-a593-9703a11185c0
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 时间 (751314f2-190a-462d-ba4c-c7f37c80eb87)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 时间 -> 751314f2-190a-462d-ba4c-c7f37c80eb87
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 圣炎 (6d9aa0e8-6b32-4201-92a3-8cea4c3a194e)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 圣炎 -> 6d9aa0e8-6b32-4201-92a3-8cea4c3a194e
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 领悟 (7bbefefc-4a4b-4061-8819-cecffacc56ee)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 领悟 -> 7bbefefc-4a4b-4061-8819-cecffacc56ee
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 状态 (c7b0b788-59aa-4cbf-919f-be5fd304c69f)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 状态 -> c7b0b788-59aa-4cbf-919f-be5fd304c69f
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 星辰 (50fc151d-aef6-4448-b7b2-30fbef4f624d)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 星辰 -> 50fc151d-aef6-4448-b7b2-30fbef4f624d
+2026-03-03 17:36:27 | DEBUG    | app.database:create_entity:113 - 创建实体: 效果 (57c68397-ec02-4118-a42c-be230d0881cc)
+2026-03-03 17:36:27 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 效果 -> 57c68397-ec02-4118-a42c-be230d0881cc
+2026-03-03 17:36:27 | SUCCESS  | app.services.analysis_service:analyze_url:105 - 分析完成: 8bb2b243-6b15-4db4-b051-22033d82aa37，已保存 10 个实体到数据库
+2026-03-03 19:13:45 | INFO     | app.api.knowledge:get_entities:93 - 获取实体列表: 14 条
+2026-03-03 19:13:52 | INFO     | app.api.knowledge:get_entities:93 - 获取实体列表: 13 条
+2026-03-03 19:14:11 | INFO     | app.api.knowledge:get_entities:93 - 获取实体列表: 14 条
+2026-03-03 19:14:59 | INFO     | app.services.analysis_service:analyze_url:25 - 开始分析任务 ace83e45-0876-4de3-aa2b-a8074315dc30: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-03-03 19:14:59 | INFO     | app.crawlers.base:fetch:29 - 正在抓取: https://my.99.com/content/2023-11-27/20231127075943813.shtml
+2026-03-03 19:15:00 | SUCCESS  | app.crawlers.base:fetch:41 - 抓取成功: https://my.99.com/content/2023-11-27/20231127075943813.shtml - 大小: 15419 字节
+2026-03-03 19:15:00 | INFO     | app.crawlers.m99_crawler:_detect_page_type:376 - 从标题判断页面类型: skill
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:41 - 页面快照已保存: 09272185-f658-4607-bd22-1089ae9fe36c
+2026-03-03 19:15:00 | INFO     | app.parsers.entity_extractor:extract_entities:100 - 提取到 26 个实体
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 魔法师 (e79fe00d-2529-4f9f-8be0-e1d08cd7e13a)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 魔法师 -> e79fe00d-2529-4f9f-8be0-e1d08cd7e13a
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 阳圣炎 (8bd319e1-1667-4022-be55-877506b2d469)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 阳圣炎 -> 8bd319e1-1667-4022-be55-877506b2d469
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 专精 (f2270e2d-7c98-4135-bd50-647b2f16251f)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 专精 -> f2270e2d-7c98-4135-bd50-647b2f16251f
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 技能 (fc8e6200-080b-4f01-9d9a-afbe15c90add)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 技能 -> fc8e6200-080b-4f01-9d9a-afbe15c90add
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 时间 (16ddd353-4d4f-4283-9c51-a15fad3e1098)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 时间 -> 16ddd353-4d4f-4283-9c51-a15fad3e1098
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 圣炎 (cdb2ed59-7dd3-4cd3-8a01-c3a1145fc466)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 圣炎 -> cdb2ed59-7dd3-4cd3-8a01-c3a1145fc466
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 领悟 (9747dc7c-8d51-4ef4-a241-dd2087cab65e)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 领悟 -> 9747dc7c-8d51-4ef4-a241-dd2087cab65e
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 状态 (4d4b7472-9459-4129-b5c6-e1f063bff34d)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 状态 -> 4d4b7472-9459-4129-b5c6-e1f063bff34d
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 星辰 (cf0d2d12-6bcc-4401-8264-78e372fcc95a)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 星辰 -> cf0d2d12-6bcc-4401-8264-78e372fcc95a
+2026-03-03 19:15:00 | DEBUG    | app.database:create_entity:113 - 创建实体: 效果 (dad17cbb-c27e-4652-b785-e7fdd951a10c)
+2026-03-03 19:15:00 | DEBUG    | app.services.analysis_service:analyze_url:78 - 实体已存入数据库: 效果 -> dad17cbb-c27e-4652-b785-e7fdd951a10c
+2026-03-03 19:15:00 | SUCCESS  | app.services.analysis_service:analyze_url:105 - 分析完成: ace83e45-0876-4de3-aa2b-a8074315dc30，已保存 10 个实体到数据库
+2026-03-05 19:31:29 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 19:31:29 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:31:29 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 19:31:29 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 19:31:29 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 19:31:29 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 19:31:29 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 19:45:31 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 19:45:31 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 19:45:33 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 19:45:33 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /openapi.json
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /redoc
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:45:33 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 19:45:33 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 19:45:33 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 19:45:33 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 19:45:33 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 19:47:07 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 19:47:07 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 19:47:09 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 19:47:09 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:47:09 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 19:47:09 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 19:47:10 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 19:47:10 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 19:47:10 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 19:49:07 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 19:49:07 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 19:49:09 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 19:49:09 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:49:09 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 19:49:09 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 19:49:09 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 19:49:09 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 19:49:09 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 19:49:13 | DEBUG    | app.database:fetch:62 - 查询返回 1 行
+2026-03-05 19:49:13 | INFO     | app.api.knowledge:get_entities:59 - Rows fetched: 1
+2026-03-05 19:49:32 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 19:49:32 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 19:49:34 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 19:49:34 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:49:34 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 19:49:34 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 19:49:35 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 19:49:35 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 19:49:35 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 19:49:42 | DEBUG    | app.database:fetch:62 - 查询返回 1 行
+2026-03-05 19:50:16 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 19:50:16 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 19:50:18 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 19:50:18 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /openapi.json
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /redoc
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:50:18 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 19:50:18 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 19:50:19 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 19:50:19 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 19:50:19 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 19:50:21 | DEBUG    | app.database:fetch:62 - 查询返回 1 行
+2026-03-05 19:50:34 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 19:50:34 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 19:50:36 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 19:50:36 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 19:50:36 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 19:50:36 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 19:50:37 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 19:50:37 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 19:50:37 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 19:50:41 | DEBUG    | app.database:fetch:62 - 查询返回 1 行
+2026-03-05 20:05:53 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 20:05:53 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 20:05:55 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 20:05:55 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /openapi.json
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /redoc
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 20:05:55 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 20:05:55 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 20:05:55 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 20:05:55 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 20:05:55 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 20:06:03 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-05 20:06:55 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 20:06:55 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 20:06:57 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 20:06:57 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /openapi.json
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /redoc
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 20:06:57 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 20:06:57 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 20:06:57 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 20:06:57 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 20:06:57 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 20:07:10 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-05 20:07:12 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-05 20:07:17 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-05 20:07:24 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-05 20:07:27 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-05 20:26:41 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-05 20:26:41 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-05 20:26:43 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-05 20:26:43 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /openapi.json
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /redoc
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-05 20:26:43 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-05 20:26:43 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-05 20:26:43 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-05 20:26:43 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-05 20:26:43 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-05 20:26:50 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-06 11:44:47 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-06 11:44:47 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-06 11:44:50 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-06 11:44:50 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-06 11:44:50 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-06 11:44:50 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-06 11:44:50 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-06 11:44:50 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-06 11:44:50 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-06 11:45:17 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-06 11:46:26 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-06 11:46:49 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-06 11:46:53 | DEBUG    | app.database:fetch:62 - 查询返回 54 行
+2026-03-06 11:46:54 | DEBUG    | app.database:fetch:62 - 查询返回 54 行
+2026-03-06 12:01:03 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-06 12:01:03 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-06 12:01:05 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-06 12:01:05 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /openapi.json
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /docs/oauth2-redirect
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'HEAD', 'GET'} /redoc
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-06 12:01:05 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-06 12:01:05 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-06 12:01:05 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-06 12:01:05 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-06 12:01:05 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-06 12:01:07 | DEBUG    | app.database:fetch:62 - 查询返回 54 行
+2026-03-06 12:04:16 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-06 12:04:16 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-06 12:04:18 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-06 12:04:18 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-06 12:04:18 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-06 12:04:18 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-06 12:04:19 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-06 12:04:19 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-06 12:04:19 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-06 12:04:46 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-06 12:04:46 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-06 12:04:48 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-06 12:04:48 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-06 12:04:48 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-06 12:04:48 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-06 12:04:48 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-06 12:04:48 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-06 12:04:48 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-06 12:04:54 | DEBUG    | app.database:fetch:62 - 查询返回 54 行
+2026-03-06 13:42:23 | INFO     | app.database:close:50 - 数据库连接池已关闭
+2026-03-06 13:42:23 | INFO     | app.main:shutdown_event:87 - 数据库连接已关闭
+2026-03-06 13:42:25 | INFO     | app.main:<module>:50 - ==================================================
+2026-03-06 13:42:25 | INFO     | app.main:<module>:51 - 已注册的路由:
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /openapi.json
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /docs/oauth2-redirect
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET', 'HEAD'} /redoc
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'POST'} /api/analyze/url
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/task/{task_id}
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/analyze/types
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/supplement
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/history/{entity_id}
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/entity/{entity_id}
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'POST'} /api/chat/search
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/chat/test
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/test-db
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/entities/{entity_id}
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/types
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/search
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/relations/{entity_id}
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/recent
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'GET'} /api/knowledge/stats
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'DELETE'} /api/knowledge/entities/{entity_id}
+2026-03-06 13:42:25 | INFO     | app.main:<module>:54 - {'POST'} /api/knowledge/entities/{entity_id}/verify
+2026-03-06 13:42:25 | INFO     | app.main:<module>:55 - ==================================================
+2026-03-06 13:42:26 | INFO     | app.database:connect:33 - ✅ 数据库连接池创建成功: mygame_knowledge@localhost
+2026-03-06 13:42:26 | INFO     | app.database:connect:38 - ✅ 数据库连接测试成功
+2026-03-06 13:42:26 | INFO     | app.main:startup_event:78 - 数据库连接已初始化
+2026-03-06 13:42:31 | DEBUG    | app.database:fetch:62 - 查询返回 54 行
+2026-03-06 13:42:56 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-06 13:43:37 | DEBUG    | app.database:fetch:62 - 查询返回 2 行
+2026-03-06 13:43:37 | DEBUG    | app.database:fetch:62 - 查询返回 20 行
+2026-03-06 13:43:37 | DEBUG    | app.database:fetch:62 - 查询返回 2 行

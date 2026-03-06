@@ -1,0 +1,38 @@
+# 移除 pydantic，添加 pydantic-settings
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic-settings==2.1.0  # 新增
+pydantic==2.5.0           # 保留，但BaseSettings已被移除
+
+# 其他依赖保持不变
+requests==2.31.0
+beautifulsoup4==4.12.0
+selenium==4.15.0
+playwright==1.40.0
+pandas==2.1.0
+numpy==1.24.0
+jieba==0.42.1
+transformers==4.35.0
+torch==2.1.0
+sqlalchemy==2.0.23
+pymysql==1.1.0
+psycopg2-binary==2.9.9
+redis==5.0.1
+python-dotenv==1.0.0
+loguru==0.7.2
+httpx==0.25.0
+lxml==4.9.0
+python-multipart==0.0.6
+
+# Web框架
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic-settings==2.1.0
+pydantic==2.5.0
+
+# 爬虫
+requests==2.31.0
+beautifulsoup4==4.12.0
+lxml==4.9.3  # 添加这一行
+selenium==4.15.0
+playwright==1.40.0
