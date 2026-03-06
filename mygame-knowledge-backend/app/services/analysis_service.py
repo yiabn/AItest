@@ -1,244 +1,185 @@
 # app/services/analysis_service.py
 import uuid
-from typing import Dict, Any, List, Optional
-from datetime import datetime
-from loguru import logger
-import json
+from typing import Dict, List, Set, Optional
+from urllib.parse import urljoin, urlparse
 
+# 数据库/模型导入
+from app.db.session import db_session
+from app.models.entity import Entity
+from app.models.relation import Relation
+from app.models.page_snapshots import PageSnapshot  # 导入页面快照表（若有）
+# 爬虫/工具类导入
 from app.crawlers.m99_crawler import M99Crawler
-from app.parsers.entity_extractor import GameEntityExtractor
-from app.models.response import AnalyzeResponse, EntityInfo, RelationInfo
-from app.database import db  # 导入数据库实例
+from app.utils.entity_utils import get_or_create_entity_id
 
 class AnalysisService:
-    """分析服务 - 支持数据库持久化"""
-    
+    """分析服务：支持深度爬取+返回原始内容"""
     def __init__(self):
         self.crawler = M99Crawler()
-        self.extractor = GameEntityExtractor()
-        # 移除内存中的 tasks 字典，改用数据库存储
-        # self.tasks: Dict[str, AnalyzeResponse] = {}
-        
-    async def analyze_url(self, url: str, depth: int = 1, include_raw: bool = False) -> AnalyzeResponse:
-        """分析URL并将结果存入数据库"""
-        task_id = str(uuid.uuid4())
-        logger.info(f"开始分析任务 {task_id}: {url}")
-        
-        try:
-            # 1. 抓取页面
-            page_data = self.crawler.analyze_page(url)
-            if "error" in page_data:
-                raise Exception(page_data["error"])
-            
-            # 2. 保存页面快照
-            try:
-                snapshot_id = await db.save_page_snapshot(
-                    url=url,
-                    title=page_data.get("title", ""),
-                    html=page_data.get("html", ""),
-                    text=page_data.get("text", "")
-                )
-                logger.debug(f"页面快照已保存: {snapshot_id}")
-            except Exception as e:
-                logger.warning(f"保存页面快照失败: {e}")
-            
-            # 3. 提取实体
-            entities_data = self.extractor.extract_entities(
-                page_data["text"], 
-                page_data["type"]
-            )
-            
-            # 4. 转换为实体对象并存入数据库
-            entities = []
-            entity_id_map = {}  # 用于记录临时索引和数据库ID的映射
-            
-            for idx, e in enumerate(entities_data):
-                # 创建实体对象（用于返回给前端）
-                entity_info = EntityInfo(
-                    id=f"{task_id}_entity_{idx}",
-                    name=e["name"],
-                    type=e["type"],
-                    attributes=e.get("attributes", {}),
-                    confidence=e.get("confidence", 0.8)
-                )
-                entities.append(entity_info)
-                
-                # 存入数据库
-                try:
-                    db_entity_id = await db.create_entity(
-                        name=e["name"],
-                        type=e["type"],
-                        source_url=url,
-                        attributes=e.get("attributes", {}),
-                        confidence=e.get("confidence", 0.8),
-                        version="1.0"
-                    )
-                    # 记录映射关系（临时索引 -> 数据库ID）
-                    entity_id_map[f"{task_id}_entity_{idx}"] = db_entity_id
-                    logger.debug(f"实体已存入数据库: {e['name']} -> {db_entity_id}")
-                except Exception as e:
-                    logger.error(f"保存实体到数据库失败: {e}")
-            
-            # 5. 生成建议
-            suggestions = self._generate_suggestions(page_data, entities)
-            
-            # 6. 构建响应
-            response = AnalyzeResponse(
-                task_id=task_id,
-                title=page_data["title"],
-                url=url,
-                data_type=page_data["type"],
-                entities=entities,
-                relations=[],  # 暂时留空
-                raw_html=page_data.get("html") if include_raw else None,
-                raw_text=page_data.get("text") if include_raw else None,
-                suggestions=suggestions,
-                analyze_time=datetime.now()
-            )
-            
-            # 7. 保存分析任务记录
-            try:
-                await self._save_analysis_task(task_id, url, depth, response)
-            except Exception as e:
-                logger.error(f"保存任务记录失败: {e}")
-            
-            logger.success(f"分析完成: {task_id}，已保存 {len(entities)} 个实体到数据库")
-            return response
-            
-        except Exception as e:
-            logger.error(f"分析失败 {url}: {e}")
-            raise
-    
-    async def _save_analysis_task(self, task_id: str, url: str, depth: int, response: AnalyzeResponse):
-        """保存分析任务记录"""
-        # 将响应对象转换为可序列化的字典
-        task_data = {
-            "task_id": task_id,
-            "title": response.title,
-            "url": url,
-            "data_type": response.data_type,
-            "entities_count": len(response.entities),
-            "suggestions": response.suggestions
-        }
-        
-        # 这里可以创建 analysis_tasks 表来存储任务记录
-        # 暂时用 execute 直接插入
-        query = """
-            INSERT INTO analysis_tasks (task_id, url, depth, status, result, completed_at)
-            VALUES ($1, $2, $3, $4, $5::jsonb, NOW())
+        self.crawled_urls: Set[str] = set()  # 记录已爬取URL
+
+    def analyze_url(
+        self, 
+        url: str, 
+        depth: int = 1, 
+        include_raw: bool = False  # 新增：是否返回原始HTML
+    ) -> Dict:
         """
-        try:
-            await db.execute(
-                query,
-                task_id,
-                url,
-                depth,
-                "completed",
-                json.dumps(task_data, ensure_ascii=False)
-            )
-        except Exception as e:
-            # 如果表不存在，记录警告但不中断流程
-            logger.warning(f"保存任务记录失败（可能表不存在）: {e}")
-    
-    def _build_entities(self, entities_data: List[Dict], task_id: str) -> List[EntityInfo]:
-        """构建实体对象列表"""
-        entities = []
-        for idx, e in enumerate(entities_data):
-            entity = EntityInfo(
-                id=f"{task_id}_entity_{idx}",
-                name=e.get("name", "未知"),
-                type=e.get("type", "unknown"),
-                attributes=e.get("attributes", {}),
-                confidence=e.get("confidence", 0.8)
-            )
-            entities.append(entity)
-        return entities
-    
-    def _generate_suggestions(self, page_data: Dict, entities: List[EntityInfo]) -> List[str]:
-        """生成分析建议"""
-        suggestions = []
-        
-        # 根据页面类型生成建议
-        page_type = page_data.get("type", "unknown")
-        
-        if page_type == "pet":
-            if len(entities) == 0:
-                suggestions.append("未提取到幻兽实体，可能需要手动补充")
-            else:
-                suggestions.append(f"检测到 {len(entities)} 个幻兽实体，建议补充幻兽技能")
-                
-        elif page_type == "equipment":
-            suggestions.append("建议补充装备获取方式和掉落来源")
-            
-        elif page_type == "skill":
-            suggestions.append("建议补充技能升级效果和消耗")
-            
-        # 检查数据完整性
-        if page_data.get("text"):
-            text_len = len(page_data["text"])
-            if text_len < 100:
-                suggestions.append("页面内容较少，可能需要补充详细信息")
-        
-        # 添加数据库相关的建议
-        suggestions.append("数据已自动保存到知识库，可通过历史记录查看")
-                
-        return suggestions[:4]  # 最多4条建议
-    
-    async def get_task(self, task_id: str) -> Optional[AnalyzeResponse]:
-        """从数据库获取任务结果"""
-        try:
-            # 从 analysis_tasks 表查询
-            query = "SELECT result FROM analysis_tasks WHERE task_id = $1"
-            row = await db.fetchrow(query, task_id)
-            
-            if row and row['result']:
-                # 这里需要将存储的数据转换回 AnalyzeResponse 对象
-                # 简单起见，先返回 None，后续完善
-                logger.info(f"找到任务记录: {task_id}")
-                # TODO: 实现从存储数据重建响应对象
-                return None
-            else:
-                logger.warning(f"任务不存在: {task_id}")
-                return None
-        except Exception as e:
-            logger.error(f"获取任务失败: {e}")
-            return None
-    
-    async def update_entity(self, task_id: str, entity_id: str, new_data: Dict) -> Optional[AnalyzeResponse]:
-        """更新实体信息（同时更新数据库）"""
-        try:
-            # 从 entity_id 中提取临时ID格式: task_id_entity_index
-            parts = entity_id.split('_')
-            if len(parts) >= 3 and parts[0] == task_id:
-                # 这是临时ID，需要找到对应的数据库实体
-                # 实际上我们需要在创建实体时就建立映射关系
-                # 这里简化处理，先不实现
-                logger.warning(f"暂不支持通过临时ID更新实体: {entity_id}")
-                return None
-            else:
-                # 可能是数据库实体的UUID
-                # 更新数据库中的实体属性
-                success = await db.update_entity_attributes(entity_id, new_data)
-                if success:
-                    logger.info(f"实体更新成功: {entity_id}")
-                    # 返回更新后的实体信息
-                    # 简化处理，先返回 None
-                    return None
-                else:
-                    logger.warning(f"实体不存在: {entity_id}")
-                    return None
-        except Exception as e:
-            logger.error(f"更新实体失败: {e}")
-            return None
-    
-    async def get_entities_by_type(self, entity_type: str, limit: int = 100) -> List[Dict]:
-        """根据类型获取实体列表"""
-        return await db.get_entities_by_type(entity_type, limit)
-    
-    async def search_entities(self, keyword: str, entity_type: Optional[str] = None) -> List[Dict]:
-        """搜索实体"""
-        return await db.search_entities(keyword, entity_type)
+        分析URL（支持深度爬取+返回原始内容）
+        :param url: 目标URL
+        :param depth: 爬取深度（1=仅当前页面）
+        :param include_raw: 是否返回原始HTML/快照
+        :return: 解析结果（含/不含原始内容）
+        """
+        if depth > 3:
+            depth = 3
+        if url in self.crawled_urls:
+            return {
+                "entities": [], 
+                "relations": [], 
+                "page_type": "unknown", 
+                "message": "URL已爬取",
+                "raw_html": "" if include_raw else None
+            }
+        self.crawled_urls.add(url)
 
+        # 1. 爬取并解析当前页面
+        crawl_result = self.crawler.crawl_and_parse(url)
+        entities = crawl_result["entities"]
+        relations = crawl_result["relations"]
+        page_type = crawl_result["page_type"]
+        raw_html = crawl_result.get("html", "")  # 获取原始HTML
 
-# 为了保持向后兼容，创建服务实例
-analysis_service = AnalysisService()
+        # 2. 入库实体/关系/页面快照
+        self._save_entities_and_relations(entities, relations)
+        if include_raw:
+            self._save_page_snapshot(url, raw_html)  # 保存页面快照
+
+        # 3. 深度爬取（若depth>1）
+        if depth > 1:
+            child_urls = self._extract_child_urls(url, raw_html)
+            for child_url in child_urls:
+                child_result = self.analyze_url(child_url, depth=depth-1, include_raw=include_raw)
+                entities.extend(child_result["entities"])
+                relations.extend(child_result["relations"])
+
+        # 4. 去重
+        entities = self._deduplicate_entities(entities)
+        relations = self._deduplicate_relations(relations)
+
+        # 5. 构造返回结果（含/不含原始内容）
+        result = {
+            "page_type": page_type,
+            "entities": entities,
+            "relations": relations,
+            "crawled_urls": list(self.crawled_urls),
+            "message": f"成功解析：{len(entities)}个实体，{len(relations)}个关系"
+        }
+        # 若include_raw=True，添加原始HTML
+        if include_raw:
+            result["raw_html"] = raw_html
+            # 可选：返回快照ID
+            snapshot = db_session.query(PageSnapshot).filter(PageSnapshot.url == url).first()
+            if snapshot:
+                result["snapshot_id"] = str(snapshot.id)
+
+        return result
+
+    def _save_entities_and_relations(self, entities: List[Dict], relations: List[Dict]):
+        """入库实体和关系（原有逻辑）"""
+        entity_ids = {}
+        for entity in entities:
+            existing_entity = db_session.query(Entity).filter(
+                Entity.name == entity["name"],
+                Entity.type == entity["type"]
+            ).first()
+            if existing_entity:
+                existing_entity.attributes.update(entity.get("attributes", {}))
+                existing_entity.source_url = entity.get("source_url", "")
+                db_session.commit()
+                entity_ids[entity["name"]] = str(existing_entity.id)
+            else:
+                new_entity = Entity(
+                    id=uuid.uuid4(),
+                    name=entity["name"],
+                    type=entity["type"],
+                    attributes=entity.get("attributes", {}),
+                    source_url=entity.get("source_url", "")
+                )
+                db_session.add(new_entity)
+                db_session.commit()
+                entity_ids[entity["name"]] = str(new_entity.id)
+
+        for relation in relations:
+            source_id = entity_ids.get(relation["source_name"]) or get_or_create_entity_id(
+                relation["source_name"], relation["source_type"]
+            )
+            target_id = entity_ids.get(relation["target_name"]) or get_or_create_entity_id(
+                relation["target_name"], relation["target_type"]
+            )
+            existing_relation = db_session.query(Relation).filter(
+                Relation.source_id == uuid.UUID(source_id),
+                Relation.target_id == uuid.UUID(target_id),
+                Relation.relation_type == relation["relation_type"]
+            ).first()
+            if not existing_relation:
+                new_relation = Relation(
+                    source_id=uuid.UUID(source_id),
+                    target_id=uuid.UUID(target_id),
+                    relation_type=relation["relation_type"],
+                    description=relation.get("description", "")
+                )
+                db_session.add(new_relation)
+                db_session.commit()
+
+    def _save_page_snapshot(self, url: str, html: str):
+        """保存页面快照到数据库"""
+        existing_snapshot = db_session.query(PageSnapshot).filter(PageSnapshot.url == url).first()
+        if existing_snapshot:
+            existing_snapshot.html_content = html
+            existing_snapshot.updated_at = datetime.utcnow()
+        else:
+            new_snapshot = PageSnapshot(
+                id=uuid.uuid4(),
+                url=url,
+                html_content=html,
+                created_at=datetime.utcnow(),
+                updated_at=datetime.utcnow()
+            )
+            db_session.add(new_snapshot)
+        db_session.commit()
+
+    def _extract_child_urls(self, base_url: str, html: str) -> List[str]:
+        """提取子链接（原有逻辑）"""
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(html, "lxml")
+        child_urls = []
+        base_domain = urlparse(base_url).netloc
+        for a_tag in soup.find_all("a", href=True):
+            href = a_tag["href"]
+            full_url = urljoin(base_url, href)
+            if urlparse(full_url).netloc == base_domain and full_url not in self.crawled_urls:
+                child_urls.append(full_url)
+        return child_urls[:10]
+
+    def _deduplicate_entities(self, entities: List[Dict]) -> List[Dict]:
+        """实体去重（原有逻辑）"""
+        seen = set()
+        unique_entities = []
+        for entity in entities:
+            key = (entity["name"], entity["type"])
+            if key not in seen:
+                seen.add(key)
+                unique_entities.append(entity)
+        return unique_entities
+
+    def _deduplicate_relations(self, relations: List[Dict]) -> List[Dict]:
+        """关系去重（原有逻辑）"""
+        seen = set()
+        unique_relations = []
+        for relation in relations:
+            key = (relation["source_name"], relation["target_name"], relation["relation_type"])
+            if key not in seen:
+                seen.add(key)
+                unique_relations.append(relation)
+        return unique_relations
