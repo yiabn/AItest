@@ -1,0 +1,10 @@
+{
+    "version": "1.0",
+    "pythonVersion": "3.10",  // 你的Python版本
+    "pythonPlatform": "Windows",
+    "venvPath": ".",
+    "python.analysis.extraPaths": ["./app"],  // 源码根目录
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none"  // 可选：关闭顽固的导入警告
+    }
+}
