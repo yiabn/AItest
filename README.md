@@ -1,128 +1,89 @@
-AItest 是一个面向游戏测试人员的智能辅助工具。它能自动分析游戏页面内容或相关文档（如策划案、需求文档），并基于分析结果生成结构化的测试点。旨在减少手工编写测试用例的重复劳动，提高测试覆盖率和效率。
-
-核心功能：输入一个游戏相关页面 URL 或上传文档 → 系统自动解析 → 输出测试点列表（含功能点、边界条件、异常场景等）。
-
-✨ 主要功能
-🌐 页面分析：输入游戏活动页面、功能界面等 URL，自动提取页面元素和文本内容。
-
-📄 文档解析：支持上传策划文档（如 Word、PDF、Markdown），提取关键需求和规则。
-
-🤖 测试点生成：基于提取的内容，利用 NLP 技术智能生成功能测试点、边界值测试点、异常场景测试点。
-
-📊 结果可视化：前端以表格、卡片等形式清晰展示生成的测试点，并支持导出为 Excel/CSV。
-
-⚙️ 可配置规则：支持自定义测试点生成规则（如包含/排除关键词、测试深度等）。
-
-🛠️ 技术栈
-后端
-框架：FastAPI (Python 3.8+)
-
-爬虫/解析：Requests, BeautifulSoup4, Playwright (用于动态页面)
-
-文档处理：python-docx, PyPDF2, markdown
-
-NLP/分析：Jieba (分词), Transformers (可选，用于更高级语义)
-
-数据格式：Pydantic, JSON
-
-前端
-框架：Vue 3 (Vite)
-
-UI 组件：Element Plus 或 Ant Design Vue
-
-HTTP 请求：Axios
-
-可视化：ECharts 或 Table 组件展示测试点
-
-部署/环境
-后端运行：Uvicorn
-
-包管理：pip (requirements.txt) / npm (package.json)
-
-🚀 快速开始
-环境要求
-Python 3.8 或更高版本
-
-Node.js 16 或更高版本
-
-(可选) 若需分析动态渲染页面，需安装 Playwright 浏览器驱动
-
-1. 克隆仓库
-bash
-git clone https://github.com/yiabn/AItest.git
-cd AItest
-2. 后端启动
-bash
-# 进入后端目录 (假设为 backend/)
-cd backend
-
-# 创建虚拟环境
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# 安装依赖
-pip install -r requirements.txt
-
-# 启动服务
-uvicorn main:app --reload --port 8000
-后端 API 默认地址：http://localhost:8000
-
-3. 前端启动
-bash
-# 进入前端目录 (假设为 frontend/)
-cd frontend
-
-# 安装依赖
-npm install
-
-# 启动开发服务器
-npm run dev
-前端访问地址：http://localhost:5173
-
-4. 使用示例
-打开前端页面，在输入框中粘贴一个游戏活动页面 URL（如某游戏官网的活动页）。
-
-点击“分析并生成测试点”。
-
-等待几秒后，页面将展示生成的测试点列表。
-
-可导出测试点至 Excel 文件。
-
-📁 项目结构（参考）
+项目整体结构
 text
-AItest/
-├── mygame-knowledge-backend/                # 后端 Python 代码
-│   ├── main.py             # FastAPI 主入口
-│   ├── api/                # API 路由
-│   ├── core/               # 核心逻辑：爬虫、解析、生成器
-│   ├── models/             # Pydantic 数据模型
-│   ├── utils/              # 工具函数
-│   └── requirements.txt
-├── mygame-knowledge-frontend/               # 前端 Vue 项目
+mygame-knowledge/
+├── frontend/                     # 前端项目 (Vue 3 + TypeScript)
+│   ├── public/                   # 静态资源
 │   ├── src/
-│   │   ├── components/     # 组件
-│   │   ├── views/          # 页面视图
-│   │   ├── api/            # Axios 接口封装
-│   │   └── assets/         # 静态资源
-│   ├── package.json
-│   └── vite.config.js
-├── docs/                   # 文档、截图等
-└── README.md
-🤝 如何贡献
-我们欢迎任何形式的贡献！如果您想改进这个项目，请：
+│   │   ├── api/                   # API 接口封装
+│   │   │   └── config.ts           # Axios 配置及所有后端接口定义
+│   │   ├── assets/                 # 图片、样式等
+│   │   ├── components/             # 可复用组件
+│   │   ├── router/                 # 路由配置
+│   │   │   └── index.ts             # 路由表
+│   │   ├── types/                   # TypeScript 类型定义
+│   │   │   └── index.ts              # 全局类型（AnalysisResult, Entity 等）
+│   │   ├── views/                    # 页面视图组件
+│   │   │   ├── HomeView.vue           # 首页：网址输入、分析结果、对话补充
+│   │   │   ├── HistoryView.vue        # 历史记录页面
+│   │   │   ├── KnowledgeView.vue      # 知识库浏览页面
+│   │   │   └── SettingsView.vue       # 设置页面（占位）
+│   │   ├── App.vue                    # 根组件（含侧边栏布局）
+│   │   ├── main.ts                    # 入口文件
+│   │   └── shims-vue.d.ts             # Vue 模块声明
+│   ├── .env                           # 环境变量
+│   ├── index.html                     # HTML 模板
+│   ├── package.json                   # 依赖管理
+│   ├── tsconfig.json                  # TypeScript 配置
+│   └── vite.config.ts                  # Vite 配置
+│
+├── backend/                      # 后端项目 (FastAPI + Python)
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py                    # FastAPI 应用入口，注册路由，CORS，生命周期
+│   │   ├── config.py                   # 配置类（从环境变量加载）
+│   │   ├── database.py                  # 数据库连接池及通用 CRUD 操作
+│   │   ├── models/                      # Pydantic 模型（请求/响应）
+│   │   │   ├── __init__.py
+│   │   │   ├── request.py                # 请求模型（AnalyzeRequest, ChatRequest）
+│   │   │   └── response.py               # 响应模型（AnalyzeResponse, EntityInfo, ChatResponse）
+│   │   ├── api/                          # 路由模块
+│   │   │   ├── __init__.py
+│   │   │   ├── analyze.py                 # 分析相关接口
+│   │   │   ├── chat.py                    # 对话补充接口
+│   │   │   └── knowledge.py                # 知识库查询接口
+│   │   ├── services/                      # 业务逻辑层
+│   │   │   ├── __init__.py
+│   │   │   └── analysis_service.py         # 分析服务（爬虫+解析+存储）
+│   │   ├── crawlers/                       # 爬虫模块
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py                      # 基础爬虫类
+│   │   │   └── m99_crawler.py                # 魔域官网专用爬虫
+│   │   ├── parsers/                         # 解析器模块
+│   │   │   ├── __init__.py
+│   │   │   └── entity_extractor.py           # 实体提取器（基于 jieba 和规则）
+│   │   └── utils/                           # 工具函数
+│   │       ├── __init__.py
+│   │       └── helpers.py                    # 辅助函数（生成ID、JSON处理等）
+│   ├── logs/                             # 日志目录
+│   ├── .env                               # 环境变量（数据库密码等）
+│   ├── requirements.txt                   # Python 依赖
+│   └── run.py                             # 开发环境启动脚本
+└── README.md                          # 项目说明
+核心文件功能详解
+前端关键文件
+文件路径	功能描述
+src/api/config.ts	封装 Axios 实例，定义 analyzeApi、chatApi、knowledgeApi 三大模块的接口方法，统一处理请求响应和错误提示。
+src/types/index.ts	定义全局 TypeScript 类型：Entity、AnalysisResult、ChatMessage、KnowledgeStats 等，确保前后端数据类型一致。
+src/views/HomeView.vue	主页面：网址输入、分析选项、分析结果展示（基础信息、实体卡片/表格、AI建议、原始内容）、对话补充对话框。
+src/views/HistoryView.vue	历史记录页：从 localStorage 读取历史分析记录，支持重新分析、查看详情、删除、清空。
+src/views/KnowledgeView.vue	知识库浏览页：统计卡片、搜索过滤、实体列表（网格/列表切换）、分页、实体详情抽屉（含属性和关系）、统计详情弹窗。
+src/App.vue	根组件：包含侧边栏导航（资料分析、历史记录、知识库、设置）和主内容区布局。
+src/router/index.ts	定义路由映射，实现页面切换。
+后端关键文件
+文件路径	功能描述
+app/main.py	FastAPI 应用入口：配置 CORS、注册路由（/api/analyze、/api/chat、/api/knowledge），添加启动/关闭事件管理数据库连接。
+app/config.py	使用 pydantic-settings 从环境变量加载配置（数据库连接、爬虫参数等）。
+app/database.py	定义 Database 类，封装 PostgreSQL 连接池和通用数据库操作（fetch、execute 等），并提供实体、关系、补充等专用方法。
+app/models/response.py	定义 Pydantic 响应模型：EntityInfo、AnalyzeResponse、ChatResponse 等，用于接口返回数据校验。
+app/api/analyze.py	分析接口：POST /url 接收网址，调用 AnalysisService 分析并返回结果；GET /task/{task_id} 获取任务结果。
+app/api/chat.py	对话补充接口：POST /supplement 接收用户消息，解析意图并更新实体属性；GET /history/{entity_id} 获取补充历史。
+app/api/knowledge.py	知识库接口：GET /entities（分页、过滤）、GET /entities/{id}（详情）、GET /types（类型统计）、GET /search（搜索）、GET /relations/{id}、GET /recent、GET /stats 等。
+app/services/analysis_service.py	核心业务类：整合爬虫和解析器，执行分析流程，将结果存入数据库，并返回标准化响应。
+app/crawlers/m99_crawler.py	魔域官网专用爬虫：实现 analyze_page 方法，根据 URL 判断页面类型，提取标题、纯文本和原始 HTML，调用对应解析方法。
+app/parsers/entity_extractor.py	实体提取器：基于 jieba 分词和正则规则，从文本中识别实体名称、类型和简单属性。
+run.py	开发环境启动脚本：设置 Python 路径，启动 uvicorn 服务器。
+数据库表结构（PostgreSQL）
+已在前一个回答中详细列出，包含 entities、relations、user_supplements、page_snapshots、analysis_tasks 五张表及其索引、触发器。核心表使用 UUID 主键和 JSONB 字段存储动态属性，支持灵活扩展。
 
-Fork 本仓库。
-
-创建您的特性分支 (git checkout -b feature/AmazingFeature)。
-
-提交您的改动 (git commit -m 'Add some AmazingFeature')。
-
-推送到分支 (git push origin feature/AmazingFeature)。
-
-打开一个 Pull Request。
-
-📄 许可证
-本项目采用 MIT 许可证，详情请参见 LICENSE 文件。
-
-📧 联系
-如有任何问题或建议，请通过 Issues 与我们联系。
+总结
+整个项目采用前后端分离架构，前端使用 Vue 3 + TypeScript + Element Plus，后端使用 FastAPI + asyncpg + Pydantic。实现了从游戏官网抓取资料、解析实体、存入数据库、提供查询和对话补充的完整流程。当前系统已具备基础功能，下一步可在此基础上增强解析智能、测试点生成和对话交互能力。
