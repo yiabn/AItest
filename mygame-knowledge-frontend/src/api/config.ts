@@ -98,6 +98,7 @@ export interface KnowledgeStats {
   total_entities: number;
   total_relations: number;
   total_supplements: number;
+  total_test_points: number;
   today_new: number;
   type_distribution: TypeStat[];
   last_update: string;
@@ -120,8 +121,13 @@ export const analyzeApi = {
   
   getPageTypes: (): Promise<{ types: Array<{ value: string; label: string }> }> => {
     return api.get('/analyze/types');
+  },
+  submitUrl: (data: { url: string; depth?: number; include_raw?: boolean }) => {
+    return api.post('/analyze/url', data);
   }
 };
+
+
 
 // ========== 对话相关 API ==========
 export const chatApi = {

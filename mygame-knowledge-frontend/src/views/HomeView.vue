@@ -431,29 +431,65 @@ const analyzeUrl = async () => {
 
   loading.value = true;
   try {
-    const result = await analyzeApi.analyzeUrl({
+    // 1. 提交任务
+    const { task_id } = await analyzeApi.submitUrl({
       url: url.value,
       depth: depth.value,
       include_raw: includeRaw.value
     });
-    analysisResult.value = result;
-    ElMessage.success('分析完成');
 
-    saveToHistory(result);
-
-    // 初始化关系图谱
-    nextTick(() => {
-      if (entityViewMode.value === 'graph') {
-        initGraph();
+    // 2. 轮询结果
+    const pollInterval = setInterval(async () => {
+      try {
+        const result = await analyzeApi.getTask(task_id);
+        analysisResult.value = result;
+        clearInterval(pollInterval);
+        loading.value = false;
+        ElMessage.success('分析完成');
+        saveToHistory(result);
+      } catch (pollError: any) { // 使用 any 临时解决，但下面推荐更好的方式
+        if (pollError.response?.status === 202) {
+          // 仍在处理中，继续轮询
+          console.log('任务处理中...');
+        } else {
+          clearInterval(pollInterval);
+          loading.value = false;
+          // 使用类型守卫处理 unknown
+          let errorMsg = '未知错误';
+          if (pollError instanceof Error) {
+            errorMsg = pollError.message;
+          } else if (typeof pollError === 'string') {
+            errorMsg = pollError;
+          } else if (pollError && typeof pollError === 'object' && 'message' in pollError) {
+            errorMsg = String(pollError.message);
+          }
+          ElMessage.error('分析失败: ' + errorMsg);
+        }
       }
-    });
-  } catch (error) {
-    console.error('分析失败:', error);
-  } finally {
+    }, 3000);
+
+    // 超时保护
+    setTimeout(() => {
+      clearInterval(pollInterval);
+      if (loading.value) {
+        loading.value = false;
+        ElMessage.error('分析超时，请稍后重试');
+      }
+    }, 120000);
+  } catch (error: unknown) {  // 注意这里明确为 unknown
     loading.value = false;
+    // 处理 unknown 类型的错误
+    let errorMsg = '未知错误';
+    if (error instanceof Error) {
+      errorMsg = error.message;
+    } else if (typeof error === 'string') {
+      errorMsg = error;
+    } else if (error && typeof error === 'object' && 'message' in error) {
+      errorMsg = String(error.message);
+    }
+    ElMessage.error('提交任务失败: ' + errorMsg);
   }
 };
-
 // 保存到历史记录
 const saveToHistory = (result: AnalysisResult) => {
   const history = JSON.parse(localStorage.getItem('analysis_history') || '[]');

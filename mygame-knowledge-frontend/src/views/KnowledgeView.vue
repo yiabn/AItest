@@ -187,74 +187,96 @@
       </div>
 
       <div v-else-if="detailDrawer.entity" class="entity-detail">
-        <el-descriptions :column="2" border>
-          <el-descriptions-item label="名称">{{ detailDrawer.entity.name }}</el-descriptions-item>
-          <el-descriptions-item label="类型">
-            <el-tag :type="getEntityTypeTag(detailDrawer.entity.type)">
-              {{ getEntityTypeName(detailDrawer.entity.type) }}
-            </el-tag>
-          </el-descriptions-item>
-          <el-descriptions-item label="置信度">
-            <el-progress
-              :percentage="detailDrawer.entity.confidence * 100"
-              :format="() => (detailDrawer.entity.confidence * 100).toFixed(0) + '%'"
-              :color="getConfidenceColor(detailDrawer.entity.confidence)"
-            />
-          </el-descriptions-item>
-          <el-descriptions-item label="来源">
-            <span v-if="detailDrawer.entity.source_url">
-              <el-link :href="detailDrawer.entity.source_url" target="_blank">
-                查看原网页
-              </el-link>
-            </span>
-            <span v-else>未知</span>
-          </el-descriptions-item>
-          <el-descriptions-item label="创建时间">{{ formatDateTime(detailDrawer.entity.created_at) }}</el-descriptions-item>
-          <el-descriptions-item label="更新时间">{{ formatDateTime(detailDrawer.entity.updated_at) }}</el-descriptions-item>
-        </el-descriptions>
+        <el-tabs v-model="activeDetailTab">
+          <el-tab-pane label="属性" name="attributes">
+            <el-descriptions :column="2" border>
+              <el-descriptions-item label="名称">{{ detailDrawer.entity.name }}</el-descriptions-item>
+              <el-descriptions-item label="类型">
+                <el-tag :type="getEntityTypeTag(detailDrawer.entity.type)">
+                  {{ getEntityTypeName(detailDrawer.entity.type) }}
+                </el-tag>
+              </el-descriptions-item>
+              <el-descriptions-item label="置信度">
+                <el-progress
+                  :percentage="detailDrawer.entity.confidence * 100"
+                  :format="() => (detailDrawer.entity.confidence * 100).toFixed(0) + '%'"
+                  :color="getConfidenceColor(detailDrawer.entity.confidence)"
+                />
+              </el-descriptions-item>
+              <el-descriptions-item label="来源">
+                <span v-if="detailDrawer.entity.source_url">
+                  <el-link :href="detailDrawer.entity.source_url" target="_blank">
+                    查看原网页
+                  </el-link>
+                </span>
+                <span v-else>未知</span>
+              </el-descriptions-item>
+              <el-descriptions-item label="创建时间">{{ formatDateTime(detailDrawer.entity.created_at) }}</el-descriptions-item>
+              <el-descriptions-item label="更新时间">{{ formatDateTime(detailDrawer.entity.updated_at) }}</el-descriptions-item>
+            </el-descriptions>
 
-        <h4 class="detail-section">属性详情</h4>
-        <el-table :data="attributeList" stripe size="small">
-          <el-table-column prop="key" label="属性名" width="200" />
-          <el-table-column prop="value" label="属性值" />
-        </el-table>
+            <h4 class="detail-section">属性详情</h4>
+            <el-table :data="attributeList" stripe size="small">
+              <el-table-column prop="key" label="属性名" width="200" />
+              <el-table-column prop="value" label="属性值" />
+            </el-table>
+          </el-tab-pane>
 
-        <h4 class="detail-section">关系网络</h4>
-        <div class="relations-preview">
-          <div v-if="detailDrawer.relations?.length" class="relations-list">
-            <el-tag
-              v-for="rel in detailDrawer.relations.slice(0, 10)"
-              :key="rel.id"
-              class="relation-tag"
-              :type="getRelationTypeTag(rel.relation_type)"
-              effect="plain"
-            >
-              {{ rel.source_name }} → {{ rel.relation_type }} → {{ rel.target_name }}
-            </el-tag>
-            <div v-if="detailDrawer.relations.length > 10" class="relations-more">
-              等{{ detailDrawer.relations.length }}个关系
+          <el-tab-pane label="关系" name="relations">
+            <div class="relations-preview">
+              <div v-if="detailDrawer.relations?.length" class="relations-list">
+                <el-tag
+                  v-for="rel in detailDrawer.relations.slice(0, 10)"
+                  :key="rel.id"
+                  class="relation-tag"
+                  :type="getRelationTypeTag(rel.relation_type)"
+                  effect="plain"
+                >
+                  {{ rel.source_name }} → {{ rel.relation_type }} → {{ rel.target_name }}
+                </el-tag>
+                <div v-if="detailDrawer.relations.length > 10" class="relations-more">
+                  等{{ detailDrawer.relations.length }}个关系
+                </div>
+              </div>
+              <el-empty v-else description="暂无关系" :image-size="60" />
             </div>
-          </div>
-          <el-empty v-else description="暂无关系" :image-size="60" />
-        </div>
+          </el-tab-pane>
 
-        <h4 class="detail-section">补充历史</h4>
-        <div class="supplements-list">
-          <el-timeline v-if="detailDrawer.supplements?.length">
-            <el-timeline-item
-              v-for="sup in detailDrawer.supplements"
-              :key="sup.id"
-              :timestamp="formatDateTime(sup.created_at)"
-              :type="sup.status === 'approved' ? 'success' : 'info'"
-            >
-              <p><strong>{{ sup.field_name }}:</strong> {{ sup.field_value }}</p>
-              <p v-if="sup.original_value" class="original-value">
-                原值: {{ sup.original_value }}
-              </p>
-            </el-timeline-item>
-          </el-timeline>
-          <el-empty v-else description="暂无补充历史" :image-size="60" />
-        </div>
+          <el-tab-pane label="补充历史" name="supplements">
+            <div class="supplements-list">
+              <el-timeline v-if="detailDrawer.supplements?.length">
+                <el-timeline-item
+                  v-for="sup in detailDrawer.supplements"
+                  :key="sup.id"
+                  :timestamp="formatDateTime(sup.created_at)"
+                  :type="sup.status === 'approved' ? 'success' : 'info'"
+                >
+                  <p><strong>{{ sup.field_name }}:</strong> {{ sup.field_value }}</p>
+                  <p v-if="sup.original_value" class="original-value">
+                    原值: {{ sup.original_value }}
+                  </p>
+                </el-timeline-item>
+              </el-timeline>
+              <el-empty v-else description="暂无补充历史" :image-size="60" />
+            </div>
+          </el-tab-pane>
+
+          <el-tab-pane label="测试点" name="testPoints">
+            <div v-if="detailDrawer.testPoints?.length" class="test-points-list">
+              <el-card v-for="(tp, idx) in detailDrawer.testPoints" :key="idx" class="test-point-card" shadow="hover">
+                <div class="test-point-header">
+                  <el-tag :type="getPriorityType(tp.priority)" size="small">{{ tp.priority }}</el-tag>
+                  <el-tag size="small">{{ tp.category }}</el-tag>
+                  <el-tag size="small" :type="getStatusType(tp.status)">{{ tp.status }}</el-tag>
+                </div>
+                <p class="test-point-desc">{{ tp.description }}</p>
+                <p class="test-point-expected"><strong>预期：</strong>{{ tp.expected_result }}</p>
+                <p v-if="tp.test_steps" class="test-point-steps"><strong>步骤：</strong>{{ tp.test_steps }}</p>
+              </el-card>
+            </div>
+            <el-empty v-else description="暂无测试点" :image-size="60" />
+          </el-tab-pane>
+        </el-tabs>
       </div>
     </el-drawer>
 
@@ -268,6 +290,7 @@
           <el-descriptions-item label="总实体数">{{ stats?.total_entities || 0 }}</el-descriptions-item>
           <el-descriptions-item label="总关系数">{{ stats?.total_relations || 0 }}</el-descriptions-item>
           <el-descriptions-item label="总补充数">{{ stats?.total_supplements || 0 }}</el-descriptions-item>
+          <el-descriptions-item label="总测试点">{{ stats?.total_test_points || 0 }}</el-descriptions-item>
           <el-descriptions-item label="今日新增">{{ stats?.today_new || 0 }}</el-descriptions-item>
         </el-descriptions>
 
@@ -289,7 +312,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, computed, watch } from 'vue';
+import { ref, reactive, onMounted, computed } from 'vue';
 import { ElMessage } from 'element-plus';
 import {
   Search,
@@ -305,43 +328,54 @@ import { knowledgeApi } from '@/api/config';
 import type { Entity, TypeStat, KnowledgeStats } from '@/api/config';
 import dayjs from 'dayjs';
 
-// 类型扩展
+// 扩展类型定义
+interface TestPoint {
+  id: string;
+  entity_id?: string;
+  category: string;
+  description: string;
+  expected_result?: string;
+  test_steps?: string;
+  priority: 'high' | 'medium' | 'low';
+  status: 'pending' | 'passed' | 'failed' | 'blocked';
+  confidence: number;
+  created_at: string;
+}
+
 interface EntityDetail {
   entity: Entity;
   relations: any[];
   supplements: any[];
+  test_points: TestPoint[];
 }
 
-// ========== 状态 ==========
-// 列表数据
+// ========== 状态变量 ==========
 const entities = ref<Entity[]>([]);
 const totalEntities = ref(0);
 const currentPage = ref(1);
 const pageSize = ref(20);
 const entitiesLoading = ref(false);
+const refreshing = ref(false);
 
-// 统计和类型
 const stats = ref<KnowledgeStats | null>(null);
 const typeStats = ref<TypeStat[]>([]);
 const statsLoading = ref(false);
-const refreshing = ref(false);
 
-// 搜索和过滤
 const searchKeyword = ref('');
 const filterType = ref('');
 const searchLoading = ref(false);
-
-// 视图模式
 const viewMode = ref<'grid' | 'list'>('grid');
 
-// 对话框
 const showStatsDialog = ref(false);
+const activeDetailTab = ref('attributes');
+
 const detailDrawer = reactive({
   visible: false,
   loading: false,
   entity: null as Entity | null,
   relations: [] as any[],
-  supplements: [] as any[]
+  supplements: [] as any[],
+  testPoints: [] as TestPoint[]
 });
 
 // ========== 计算属性 ==========
@@ -366,8 +400,8 @@ const statsCards = computed(() => [
   },
   {
     icon: MapLocation,
-    label: '今日新增',
-    value: stats.value?.today_new || 0,
+    label: '测试点',
+    value: stats.value?.total_test_points || 0,
     color: '#f56c6c'
   }
 ]);
@@ -424,6 +458,25 @@ const getConfidenceColor = (confidence: number): string => {
   return '#f56c6c';
 };
 
+const getPriorityType = (priority: string): string => {
+  const map: Record<string, string> = {
+    high: 'danger',
+    medium: 'warning',
+    low: 'info'
+  };
+  return map[priority] || 'info';
+};
+
+const getStatusType = (status: string): string => {
+  const map: Record<string, string> = {
+    pending: 'info',
+    passed: 'success',
+    failed: 'danger',
+    blocked: 'warning'
+  };
+  return map[status] || 'info';
+};
+
 const topAttributes = (entity: Entity, count: number = 3): Record<string, any> => {
   return Object.fromEntries(Object.entries(entity.attributes).slice(0, count));
 };
@@ -439,7 +492,7 @@ const formatDateTime = (date: string): string => {
 };
 
 // ========== 数据加载 ==========
-const loadEntities = async () => {
+const loadEntities = async (): Promise<void> => {
   entitiesLoading.value = true;
   try {
     const data = await knowledgeApi.getEntities({
@@ -457,7 +510,7 @@ const loadEntities = async () => {
   }
 };
 
-const loadStats = async () => {
+const loadStats = async (): Promise<void> => {
   statsLoading.value = true;
   try {
     stats.value = await knowledgeApi.getStats();
@@ -468,7 +521,7 @@ const loadStats = async () => {
   }
 };
 
-const loadTypeStats = async () => {
+const loadTypeStats = async (): Promise<void> => {
   try {
     typeStats.value = await knowledgeApi.getTypeStats() || [];
   } catch (error: any) {
@@ -476,8 +529,7 @@ const loadTypeStats = async () => {
   }
 };
 
-// 刷新所有数据
-const refreshData = async () => {
+const refreshData = async (): Promise<void> => {
   refreshing.value = true;
   try {
     await Promise.all([loadStats(), loadTypeStats(), loadEntities()]);
@@ -489,10 +541,8 @@ const refreshData = async () => {
   }
 };
 
-// ========== 搜索与过滤 ==========
-const handleSearch = async () => {
+const handleSearch = async (): Promise<void> => {
   if (!searchKeyword.value) {
-    // 如果搜索词为空，重新加载列表（按当前过滤条件）
     await loadEntities();
     return;
   }
@@ -510,7 +560,7 @@ const handleSearch = async () => {
   }
 };
 
-const handleFilterChange = () => {
+const handleFilterChange = (): void => {
   currentPage.value = 1;
   if (searchKeyword.value) {
     handleSearch();
@@ -519,8 +569,7 @@ const handleFilterChange = () => {
   }
 };
 
-// ========== 分页 ==========
-const handlePageChange = (page: number) => {
+const handlePageChange = (page: number): void => {
   currentPage.value = page;
   if (searchKeyword.value) {
     handleSearch();
@@ -529,7 +578,7 @@ const handlePageChange = (page: number) => {
   }
 };
 
-const handleSizeChange = (size: number) => {
+const handleSizeChange = (size: number): void => {
   pageSize.value = size;
   currentPage.value = 1;
   if (searchKeyword.value) {
@@ -539,18 +588,19 @@ const handleSizeChange = (size: number) => {
   }
 };
 
-// ========== 详情抽屉 ==========
-const viewEntityDetail = async (entity: Entity) => {
+const viewEntityDetail = async (entity: Entity): Promise<void> => {
   detailDrawer.visible = true;
   detailDrawer.loading = true;
   detailDrawer.entity = entity;
   detailDrawer.relations = [];
   detailDrawer.supplements = [];
+  detailDrawer.testPoints = [];
 
   try {
     const detail = await knowledgeApi.getEntityDetail(entity.id) as EntityDetail;
     detailDrawer.relations = detail.relations || [];
     detailDrawer.supplements = detail.supplements || [];
+    detailDrawer.testPoints = detail.test_points || [];
   } catch (error: any) {
     console.error('加载详情失败:', error);
     ElMessage.error('加载详情失败: ' + (error.message || '未知错误'));
@@ -559,13 +609,9 @@ const viewEntityDetail = async (entity: Entity) => {
   }
 };
 
-// ========== 初始化 ==========
 onMounted(async () => {
   await Promise.all([loadStats(), loadTypeStats(), loadEntities()]);
 });
-
-// 监听过滤类型变化（已通过 handleFilterChange 处理）
-// 监听分页变化由分页组件触发
 </script>
 
 <style scoped>
@@ -819,6 +865,38 @@ onMounted(async () => {
   margin: 2px 0 0;
 }
 
+.test-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.test-point-card {
+  border-left: 4px solid #409eff;
+}
+
+.test-point-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.test-point-desc {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.test-point-expected {
+  color: #67c23a;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.test-point-steps {
+  color: #909399;
+  font-size: 12px;
+}
+
 .stats-detail {
   padding: 10px;
 }
@@ -839,12 +917,12 @@ onMounted(async () => {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .filter-options {
     width: 100%;
     justify-content: space-between;
   }
-  
+
   .stat-card {
     margin-bottom: 10px;
   }

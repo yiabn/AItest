@@ -1,32 +1,16 @@
-# app/models/relation.py
-import uuid
-from datetime import datetime
+# app/models/relation.py（通用关系模型，解决relations表为空问题）
+from sqlalchemy import Column, String, JSON, Text
+from app.models.database import BaseModel
 
-# 修复第三方库导入（确保已安装sqlalchemy）
-from sqlalchemy import Column, String, Text, ForeignKey, DateTime
-from sqlalchemy.dialects.postgresql import UUID
-
-# 修复内部导入路径（从app.db.base导入）
-from app.db.base import Base
-
-class Relation(Base):
-    """实体关系表：解决原有relations表为空问题"""
+class Relation(BaseModel):
     __tablename__ = "relations"
-
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    source_id = Column(UUID(as_uuid=True), ForeignKey("entities.id"), nullable=False)  # 源实体ID
-    target_id = Column(UUID(as_uuid=True), ForeignKey("entities.id"), nullable=False)  # 目标实体ID
-    relation_type = Column(String(50), nullable=False)  # 关系类型（has_skill/apply_to等）
-    description = Column(Text, nullable=True)  # 关系描述
-    created_at = Column(DateTime, default=datetime.utcnow)
-
-    # 解决UUID序列化问题：返回时转为字符串
-    def to_dict(self):
-        return {
-            "id": str(self.id),
-            "source_id": str(self.source_id),
-            "target_id": str(self.target_id),
-            "relation_type": self.relation_type,
-            "description": self.description,
-            "created_at": self.created_at
-        }
+    __table_args__ = {"comment": "实体关系表（文档/页面内容关联）"}
+    
+    # 通用关系字段，适配任意内容的实体关联
+    head_entity_name = Column(String(200), nullable=False, comment="头实体名称")
+    head_entity_type = Column(String(50), nullable=False, comment="头实体类型")
+    relation_type = Column(String(100), nullable=False, comment="关系类型（如包含、属于、拥有数值、规则描述）")
+    tail_entity_name = Column(String(200), nullable=False, comment="尾实体名称")
+    tail_entity_type = Column(String(50), nullable=False, comment="尾实体类型")
+    description = Column(Text, comment="关系描述")
+    properties = Column(JSON, default=dict, comment="关系属性（如位置、优先级）")

@@ -9,7 +9,7 @@ import json
 
 class Database:
     """PostgreSQL 数据库连接池管理类"""
-    
+
     def __init__(self):
         self.pool: Optional[Pool] = None
         self._connected = False
@@ -31,12 +31,12 @@ class Database:
             )
             self._connected = True
             logger.info(f"✅ 数据库连接池创建成功: {settings.DB_NAME}@{settings.DB_HOST}")
-            
+
             # 测试连接
             async with self.pool.acquire() as conn:
                 await conn.execute("SELECT 1")
             logger.info("✅ 数据库连接测试成功")
-            
+
         except Exception as e:
             logger.error(f"❌ 数据库连接失败: {e}")
             self._connected = False
@@ -91,15 +91,15 @@ class Database:
     async def create_entity(self, **kwargs) -> str:
         """创建新实体，返回实体ID"""
         entity_id = kwargs.get('id') or str(uuid.uuid4())
-        
+
         query = """
             INSERT INTO entities (
-                id, name, type, source_url, source_game, 
+                id, name, type, source_url, source_game,
                 version, attributes, confidence
             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING id
         """
-        
+
         async with self.pool.acquire() as conn:
             result = await conn.fetchval(
                 query,
@@ -119,7 +119,7 @@ class Database:
         """根据ID获取实体"""
         query = "SELECT * FROM entities WHERE id = $1"
         row = await self.fetchrow(query, entity_id)
-        
+
         if row:
             # 将Record转换为字典
             entity = dict(row)
@@ -133,7 +133,7 @@ class Database:
         """根据类型获取实体列表"""
         query = "SELECT * FROM entities WHERE type = $1 ORDER BY created_at DESC LIMIT $2"
         rows = await self.fetch(query, entity_type, limit)
-        
+
         entities = []
         for row in rows:
             entity = dict(row)
@@ -145,7 +145,7 @@ class Database:
     async def update_entity_attributes(self, entity_id: str, attributes: Dict) -> bool:
         """更新实体的attributes字段"""
         query = """
-            UPDATE entities 
+            UPDATE entities
             SET attributes = attributes || $1::jsonb, updated_at = NOW()
             WHERE id = $2
         """
@@ -163,18 +163,18 @@ class Database:
     async def create_relation(self, **kwargs) -> str:
         """创建实体关系"""
         relation_id = str(uuid.uuid4())
-        
+
         query = """
             INSERT INTO relations (
                 id, source_id, target_id, relation_type, properties, confidence
             ) VALUES ($1, $2, $3, $4, $5, $6)
-            ON CONFLICT (source_id, target_id, relation_type) 
-            DO UPDATE SET 
+            ON CONFLICT (source_id, target_id, relation_type)
+            DO UPDATE SET
                 properties = EXCLUDED.properties,
                 confidence = EXCLUDED.confidence
             RETURNING id
         """
-        
+
         async with self.pool.acquire() as conn:
             result = await conn.fetchval(
                 query,
@@ -185,12 +185,13 @@ class Database:
                 json.dumps(kwargs.get('properties', {})),
                 kwargs.get('confidence', 1.0)
             )
+            logger.debug(f"创建关系: {kwargs.get('relation_type')} ({relation_id})")
             return result
 
     async def get_relations(self, entity_id: str) -> List[Dict]:
-        """获取实体的所有关系"""
+        """获取实体的所有关系（包括源和目标）"""
         query = """
-            SELECT r.*, 
+            SELECT r.*,
                    e1.name as source_name, e1.type as source_type,
                    e2.name as target_name, e2.type as target_type
             FROM relations r
@@ -199,7 +200,7 @@ class Database:
             WHERE r.source_id = $1 OR r.target_id = $1
         """
         rows = await self.fetch(query, entity_id)
-        
+
         relations = []
         for row in rows:
             rel = dict(row)
@@ -210,20 +211,20 @@ class Database:
 
     # ========== 用户补充相关方法 ==========
 
-    async def add_user_supplement(self, entity_id: str, user_id: Optional[str], 
-                              field_name: str, field_value: str, 
-                              original_value: Optional[str] = None,
-                              source: str = 'chat') -> str:
+    async def add_user_supplement(self, entity_id: str, user_id: Optional[str],
+                                  field_name: str, field_value: str,
+                                  original_value: Optional[str] = None,
+                                  source: str = 'chat') -> str:
         """添加用户补充信息"""
         supplement_id = str(uuid.uuid4())
-        
+
         query = """
             INSERT INTO user_supplements (
                 id, entity_id, user_id, field_name, field_value, original_value, source, status
             ) VALUES ($1, $2, $3, $4, $5, $6, $7, 'pending')
             RETURNING id
         """
-        
+
         async with self.pool.acquire() as conn:
             result = await conn.fetchval(
                 query,
@@ -243,7 +244,7 @@ class Database:
     async def save_page_snapshot(self, url: str, title: str, html: str, text: str) -> str:
         """保存页面快照"""
         snapshot_id = str(uuid.uuid4())
-        
+
         query = """
             INSERT INTO page_snapshots (id, url, title, raw_html, raw_text)
             VALUES ($1, $2, $3, $4, $5)
@@ -254,7 +255,7 @@ class Database:
                 fetch_time = NOW()
             RETURNING id
         """
-        
+
         async with self.pool.acquire() as conn:
             result = await conn.fetchval(
                 query,
@@ -270,29 +271,29 @@ class Database:
 
     async def search_entities(self, keyword: str, entity_type: Optional[str] = None) -> List[Dict]:
         """搜索实体（基于名称和属性）"""
-        # 使用 PostgreSQL 的全文搜索
+        # 使用 PostgreSQL 的全文搜索（简单 ILIKE 版本，可后续优化为 tsvector）
         query = """
             SELECT * FROM entities
-            WHERE 
+            WHERE
                 name ILIKE $1
                 OR attributes::text ILIKE $1
                 {type_filter}
-            ORDER BY 
+            ORDER BY
                 CASE WHEN name ILIKE $1 THEN 1 ELSE 2 END,
                 created_at DESC
             LIMIT 50
         """
-        
+
         type_filter = ""
         params = [f'%{keyword}%']
-        
+
         if entity_type:
             type_filter = "AND type = $2"
             params.append(entity_type)
-        
+
         query = query.format(type_filter=type_filter)
         rows = await self.fetch(query, *params)
-        
+
         entities = []
         for row in rows:
             entity = dict(row)
@@ -301,6 +302,24 @@ class Database:
             entities.append(entity)
         return entities
 
+    async def save_test_point(self, test_point: dict) -> str:
+        # 插入测试点，返回 ID
+        query = """
+            INSERT INTO test_points (id, entity_id, task_id, category, description, expected_result, test_steps, priority, confidence)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            RETURNING id
+        """
+        tp_id = str(uuid.uuid4())
+        await self.execute(query, tp_id, test_point['entity_id'], test_point['task_id'],
+                        test_point['category'], test_point['description'],
+                        test_point.get('expected_result'), test_point.get('test_steps'),
+                        test_point.get('priority', 'medium'), test_point.get('confidence', 1.0))
+        return tp_id
+
+    async def get_test_points_by_entity(self, entity_id: str) -> List[Dict]:
+        query = "SELECT * FROM test_points WHERE entity_id = $1 ORDER BY created_at DESC"
+        rows = await self.fetch(query, entity_id)
+        return [dict(row) for row in rows]
 
 # 创建全局数据库实例
 db = Database()
@@ -310,9 +329,8 @@ db = Database()
 async def test_database():
     """测试数据库连接和基本操作"""
     try:
-        # 连接数据库
         await db.connect()
-        
+
         # 测试创建实体
         entity_id = await db.create_entity(
             name="奇迹龙",
@@ -326,23 +344,31 @@ async def test_database():
             }
         )
         print(f"创建实体成功: {entity_id}")
-        
-        # 测试获取实体
+
         entity = await db.get_entity(entity_id)
         print(f"获取实体: {entity['name']}, 属性: {entity['attributes']}")
-        
-        # 测试更新实体
+
         await db.update_entity_attributes(entity_id, {"获取方式": "冰封要塞掉落"})
         print("更新实体成功")
-        
-        # 测试搜索
+
         results = await db.search_entities("奇迹")
         print(f"搜索结果: {len(results)} 个")
-        
-        # 关闭连接
+
+        # 测试关系创建
+        rel_id = await db.create_relation(
+            source_id=entity_id,
+            target_id=entity_id,  # 自环用于测试
+            relation_type="test_relation",
+            properties={"test": True}
+        )
+        print(f"创建关系成功: {rel_id}")
+
+        relations = await db.get_relations(entity_id)
+        print(f"获取关系: {len(relations)} 个")
+
         await db.close()
         print("所有测试通过！")
-        
+
     except Exception as e:
         print(f"测试失败: {e}")
         import traceback
@@ -350,6 +376,5 @@ async def test_database():
 
 
 if __name__ == "__main__":
-    # 直接运行此文件进行测试
     import asyncio
     asyncio.run(test_database())

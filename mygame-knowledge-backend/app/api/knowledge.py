@@ -7,12 +7,6 @@ from pydantic import BaseModel
 from datetime import datetime
 from app.database import db
 import traceback
-import sys
-
-def log_error_to_file():
-    with open("knowledge_error.log", "a") as f:
-        f.write("="*50 + "\n")
-        traceback.print_exc(file=f)
 
 router = APIRouter()
 
@@ -40,10 +34,23 @@ class RelationResponse(BaseModel):
     properties: Dict[str, Any]
     confidence: float
 
+class TestPointResponse(BaseModel):
+    id: str
+    entity_id: Optional[str] = None
+    category: str
+    description: str
+    expected_result: Optional[str] = None
+    test_steps: Optional[str] = None
+    priority: str = "medium"
+    status: str = "pending"
+    confidence: float = 1.0
+    created_at: datetime
+
 class EntityDetailResponse(BaseModel):
     entity: EntityResponse
     relations: List[RelationResponse]
     supplements: List[Dict[str, Any]]
+    test_points: List[TestPointResponse]   # 新增测试点字段
 
 class TypeStatResponse(BaseModel):
     type: str
@@ -54,9 +61,8 @@ class SearchResponse(BaseModel):
     total: int
     keyword: str
 
-# ========== 安全的 attributes 解析 ==========
+# ========== 辅助函数：处理 attributes ==========
 def safe_parse_attributes(attr_val):
-    """将数据库中的 attributes 字段安全转换为字典"""
     if attr_val is None:
         return {}
     if isinstance(attr_val, dict):
@@ -67,28 +73,31 @@ def safe_parse_attributes(attr_val):
         except json.JSONDecodeError:
             logger.warning(f"JSON解析失败: {attr_val[:100]}")
             return {}
-    # 其他类型（极少出现）返回空字典
     return {}
 
-# ========== 辅助函数：将数据库行转换为实体字典（处理 UUID） ==========
 def row_to_entity(row) -> dict:
     entity = dict(row)
-    # 将 UUID 类型的 id 转为字符串
     if 'id' in entity and not isinstance(entity['id'], str):
         entity['id'] = str(entity['id'])
     entity['attributes'] = safe_parse_attributes(entity.get('attributes'))
     return entity
 
-# ========== 辅助函数：将关系行转换为字典（处理 UUID 字段） ==========
 def row_to_relation(row) -> dict:
     rel = dict(row)
-    # 转换关系中的 UUID 字段
     for key in ['id', 'source_id', 'target_id']:
         if key in rel and not isinstance(rel[key], str):
             rel[key] = str(rel[key])
     if rel.get('properties'):
         rel['properties'] = safe_parse_attributes(rel['properties'])
     return rel
+
+def row_to_test_point(row) -> dict:
+    tp = dict(row)
+    if 'id' in tp and not isinstance(tp['id'], str):
+        tp['id'] = str(tp['id'])
+    if tp.get('entity_id') and not isinstance(tp['entity_id'], str):
+        tp['entity_id'] = str(tp['entity_id'])
+    return tp
 
 # ========== 接口 ==========
 @router.get("/test-db")
@@ -97,7 +106,6 @@ async def test_db():
         result = await db.fetchval("SELECT 1")
         return {"status": "ok", "result": result}
     except Exception as e:
-        log_error_to_file()
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/entities", response_model=List[EntityResponse])
@@ -122,24 +130,22 @@ async def get_entities(
                 LIMIT $1 OFFSET $2
             """
             rows = await db.fetch(query, limit, offset)
-
         return [row_to_entity(row) for row in rows]
     except Exception as e:
-        log_error_to_file()
         logger.error(f"获取实体列表失败: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/entities/{entity_id}", response_model=EntityDetailResponse)
 async def get_entity_detail(entity_id: str):
     try:
-        # 直接查询实体
+        # 获取实体
         row = await db.fetchrow("SELECT * FROM entities WHERE id = $1", entity_id)
         if not row:
             raise HTTPException(status_code=404, detail="实体不存在")
         entity = row_to_entity(row)
 
-        # 查询关系
-        relations_query = """
+        # 获取关系
+        rel_rows = await db.fetch("""
             SELECT r.*, 
                    e1.name as source_name, e1.type as source_type,
                    e2.name as target_name, e2.type as target_type
@@ -147,11 +153,10 @@ async def get_entity_detail(entity_id: str):
             JOIN entities e1 ON r.source_id = e1.id
             JOIN entities e2 ON r.target_id = e2.id
             WHERE r.source_id = $1 OR r.target_id = $1
-        """
-        rel_rows = await db.fetch(relations_query, entity_id)
+        """, entity_id)
         relations = [row_to_relation(r) for r in rel_rows]
 
-        # 查询补充历史
+        # 获取补充历史
         supp_rows = await db.fetch(
             "SELECT * FROM user_supplements WHERE entity_id = $1 ORDER BY created_at DESC LIMIT 20",
             entity_id
@@ -169,28 +174,28 @@ async def get_entity_detail(entity_id: str):
                 "status": sup['status']
             })
 
+        # 获取测试点
+        tp_rows = await db.fetch("SELECT * FROM test_points WHERE entity_id = $1 ORDER BY created_at DESC", entity_id)
+        test_points = [row_to_test_point(tp) for tp in tp_rows]
+
         return {
             "entity": entity,
             "relations": relations,
-            "supplements": supplements
+            "supplements": supplements,
+            "test_points": test_points
         }
     except HTTPException:
-        log_error_to_file()
         raise
     except Exception as e:
-        log_error_to_file()
         logger.error(f"获取实体详情失败: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/types", response_model=List[TypeStatResponse])
 async def get_entity_types():
     try:
-        rows = await db.fetch(
-            "SELECT type, COUNT(*) as count FROM entities GROUP BY type ORDER BY count DESC"
-        )
+        rows = await db.fetch("SELECT type, COUNT(*) as count FROM entities GROUP BY type ORDER BY count DESC")
         return [{"type": r['type'], "count": r['count']} for r in rows]
     except Exception as e:
-        log_error_to_file()
         logger.error(f"获取类型统计失败: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -202,24 +207,18 @@ async def search(
     try:
         results = await db.search_entities(keyword, type)
         for entity in results:
-            # 处理 id 转换
             if 'id' in entity and not isinstance(entity['id'], str):
                 entity['id'] = str(entity['id'])
             entity['attributes'] = safe_parse_attributes(entity.get('attributes'))
-        return {
-            "results": results,
-            "total": len(results),
-            "keyword": keyword
-        }
+        return {"results": results, "total": len(results), "keyword": keyword}
     except Exception as e:
-        log_error_to_file()
         logger.error(f"搜索失败: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/relations/{entity_id}", response_model=List[RelationResponse])
 async def get_entity_relations(entity_id: str):
     try:
-        relations_query = """
+        rows = await db.fetch("""
             SELECT r.*, 
                    e1.name as source_name, e1.type as source_type,
                    e2.name as target_name, e2.type as target_type
@@ -227,10 +226,8 @@ async def get_entity_relations(entity_id: str):
             JOIN entities e1 ON r.source_id = e1.id
             JOIN entities e2 ON r.target_id = e2.id
             WHERE r.source_id = $1 OR r.target_id = $1
-        """
-        rows = await db.fetch(relations_query, entity_id)
-        relations = [row_to_relation(r) for r in rows]
-        return relations
+        """, entity_id)
+        return [row_to_relation(r) for r in rows]
     except Exception as e:
         logger.error(f"获取关系失败: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -252,11 +249,13 @@ async def get_knowledge_stats():
         type_stats = [{"type": r['type'], "count": r['count']} for r in type_rows]
         relation_count = await db.fetchval("SELECT COUNT(*) FROM relations")
         supplement_count = await db.fetchval("SELECT COUNT(*) FROM user_supplements")
+        test_point_count = await db.fetchval("SELECT COUNT(*) FROM test_points")
         today_count = await db.fetchval("SELECT COUNT(*) FROM entities WHERE created_at >= CURRENT_DATE")
         return {
             "total_entities": total,
             "total_relations": relation_count,
             "total_supplements": supplement_count,
+            "total_test_points": test_point_count,
             "today_new": today_count,
             "type_distribution": type_stats,
             "last_update": datetime.now().isoformat()
